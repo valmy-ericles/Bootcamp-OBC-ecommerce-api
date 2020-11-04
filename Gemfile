@@ -17,6 +17,9 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
+# Cors
+gem 'rack-cors', '~> 1.1.1'
+
 group :development do
   gem 'listen', '~> 3.2'
   gem 'spring'
