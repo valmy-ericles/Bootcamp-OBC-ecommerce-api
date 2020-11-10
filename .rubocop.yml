@@ -70,6 +70,8 @@ AllCops:
     - 'bin/**/*'
     - 'spec/support/*'
     - 'spec/factories/*'
+    - 'spec/models/*'
+    - 'spec/validators/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'db/seeds.rb'
