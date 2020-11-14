@@ -68,13 +68,7 @@ AllCops:
     - 'config/**/*'
     - 'db/**/*'
     - 'bin/**/*'
-    - 'spec/support/*'
-    - 'spec/factories/*'
-    - 'spec/models/*'
-    - 'spec/validators/*'
-    - 'spec/requests/**/*'
-    - 'spec/spec_helper.rb'
-    - 'spec/rails_helper.rb'
+    - 'spec/**/*'
     - 'db/seeds.rb'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
