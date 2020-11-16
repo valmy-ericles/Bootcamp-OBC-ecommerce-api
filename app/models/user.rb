@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
   validates :name, :profile, presence: true
 
   enum profile: { admin: 0, client: 1 }
+
+  include NameSearchable
+  include Paginatable
 end
