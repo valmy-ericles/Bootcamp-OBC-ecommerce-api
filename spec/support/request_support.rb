@@ -2,12 +2,12 @@ module RequestAPI
   def body_json(symbolize_keys: false)
     json = JSON.parse(response.body)
     symbolize_keys ? json.deep_symbolize_keys : json
-  rescue
-    return {}
+  rescue StandardError
+    {}
   end
-  
+
   def auth_header(user = nil, merge_with: {})
-    use ||= create(:user)
+    user ||= create(:user)
     auth = user.create_new_auth_token
     header = auth.merge({ 'Content-Type' => 'application/json', 'Accept' => 'application/json' })
     header.merge merge_with

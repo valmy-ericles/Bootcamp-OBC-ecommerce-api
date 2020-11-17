@@ -68,7 +68,6 @@ AllCops:
     - 'config/**/*'
     - 'db/**/*'
     - 'bin/**/*'
-    - 'spec/**/*'
     - 'db/seeds.rb'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
