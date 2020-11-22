@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::V1::Users as :admin', type: :request do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
 
   context 'GET /users' do
     let(:url) { '/admin/v1/users' }
@@ -46,20 +46,19 @@ RSpec.describe 'Admin::V1::Users as :admin', type: :request do
 
   context 'POST /users' do
     let(:url) { '/admin/v1/users' }
-    let!(:admin) { create(:user) }
 
     context 'with valid params' do
       let!(:user_valid_params) { { user: attributes_for(:user) }.to_json }
 
       it 'adds a new user' do
         expect do
-          post url, headers: auth_header(admin), params: user_valid_params
+          post url, headers: auth_header(user), params: user_valid_params
         end.to change(User, :count).by(1)
       end
 
       it 'returns last added user' do
         post url, headers: auth_header(user), params: user_valid_params
-        puts response.body
+
         expected_user = User.last.as_json(only: %i[
                                             id
                                             name
@@ -157,23 +156,22 @@ RSpec.describe 'Admin::V1::Users as :admin', type: :request do
   end
 
   context 'DELETE /users/:id' do
-    let!(:admin) { create(:user) }
     let!(:user_to_delete) { create(:user) }
     let(:url) { "/admin/v1/users/#{user_to_delete.id}" }
 
     it 'removes user' do
       expect do
-        delete url, headers: auth_header(admin)
+        delete url, headers: auth_header(user)
       end.to change(User, :count).by(-1)
     end
 
     it 'returns success status' do
-      delete url, headers: auth_header(admin)
+      delete url, headers: auth_header(user)
       expect(response).to have_http_status(:no_content)
     end
 
     it 'does not return any body content' do
-      delete url, headers: auth_header(admin)
+      delete url, headers: auth_header(user)
       expect(body_json).to_not be_present
     end
   end
