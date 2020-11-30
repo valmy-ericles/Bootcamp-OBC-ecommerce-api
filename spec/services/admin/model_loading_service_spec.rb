@@ -17,31 +17,31 @@ describe Admin::ModelLoadingService do
 
       it 'returns right :length following pagination' do
         service = described_class.new(Category.all, params)
-        result_categories = service.call
-        expect(result_categories.count).to eq 4
+        service.call
+        expect(service.records.count).to eq 4
       end
 
       it 'returns records following search, order and pagination' do
         search_categories.sort! { |a, b| b[:name] <=> a[:name] }
         service = described_class.new(Category.all, params)
-        result_categories = service.call
-        expect_categories = search_categories[4..7]
-        expect(result_categories).to contain_exactly(*expect_categories)
+        service.call
+        expected_categories = search_categories[4..7]
+        expect(service.records).to contain_exactly(*expected_categories)
       end
     end
 
     context 'when params are not present' do
       it 'returns default length pagination' do
         service = described_class.new(Category.all, nil)
-        result_categories = service.call
-        expect(result_categories.count).to eq 10
+        service.call
+        expect(service.records.count).to eq 10
       end
 
       it 'returns first 10 records' do
         service = described_class.new(Category.all, nil)
-        result_categories = service.call
-        expect_categories = categories[0..9]
-        expect(result_categories).to contain_exactly(*expect_categories)
+        service.call
+        expected_categories = categories[0..9]
+        expect(service.records).to contain_exactly(*expected_categories)
       end
     end
   end
