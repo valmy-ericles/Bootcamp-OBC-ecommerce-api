@@ -54,7 +54,7 @@ RSpec.describe 'Admin::V1::Licenses as :admin', type: :request do
     let(:url) { '/admin/v1/licenses' }
 
     context 'with valid params' do
-      let(:license_params) { { license: attributes_for(:license, user_id: user.id, game_id: game.id) }.to_json }
+      let(:license_params) { { license: attributes_for(:license, game_id: game.id) }.to_json }
 
       it 'adds a new License' do
         expect do
