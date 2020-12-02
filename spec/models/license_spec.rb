@@ -13,7 +13,7 @@ RSpec.describe License, type: :model do
       create(:license)
     end
 
-    it { is_expected.to validate_uniqueness_of(:key).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:key).scoped_to(:platform).case_insensitive }
   end
 
   it { is_expected.to belong_to :game }
