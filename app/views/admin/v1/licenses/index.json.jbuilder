@@ -1,3 +1,3 @@
 json.licenses do
-  json.array! @licenses, :id, :key
+  json.array! @loading_service.records, :id, :key
 end
